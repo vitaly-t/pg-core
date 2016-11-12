@@ -21,7 +21,7 @@
   "main": "./lib",
   "dependencies": {
     "buffer-writer": "1.x",
-    "generic-pool": "3.x",
+    "generic-pool": "2.x",
     "packet-reader": "0.2",
     "pg-connection-string": "0.1",
     "pg-types": "1.x",
