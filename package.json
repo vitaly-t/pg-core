@@ -29,7 +29,7 @@
     "semver": "5.x"
   },
   "devDependencies": {
-    "async": "2.x",
+    "async": "0.9",
     "jshint": "2.x",
     "pg-copy-streams": "1.2"
   },
