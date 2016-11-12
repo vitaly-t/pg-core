@@ -26,7 +26,7 @@
     "pg-connection-string": "0.1",
     "pg-types": "1.x",
     "pgpass": "1.x",
-    "semver": "5.x"
+    "semver": "4.x"
   },
   "devDependencies": {
     "async": "0.9",
