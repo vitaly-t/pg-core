@@ -30,7 +30,6 @@
     "jshint": "2.5.2",
     "pg-copy-streams": "0.3.0"
   },
-  "minNativeVersion": "1.7.0",
   "scripts": {
     "test": "make test-all connectionString=postgres://postgres@localhost:5432/postgres"
   },
