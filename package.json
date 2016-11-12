@@ -26,13 +26,14 @@
     "pg-connection-string": "0.1",
     "pg-types": "1.x",
     "pgpass": "1.x",
-    "semver": "4.x"
+    "semver": "5.x"
   },
   "devDependencies": {
-    "async": "0.9",
+    "async": "2.x",
     "jshint": "2.x",
     "pg-copy-streams": "1.2"
   },
+  "minNativeVersion": "1.7.0",
   "scripts": {
     "test": "make test-all connectionString=postgres://postgres@localhost:5432/postgres"
   },
