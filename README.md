@@ -10,3 +10,6 @@ PostgreSQL Driver for NodeJS.
 ```
 $ npm install pg-core
 ```
+
+12/01/2020
+This project is currently dead. And if I am ever to resume it will be 100% in TypeScript.
