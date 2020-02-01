@@ -8,7 +8,7 @@ import {connect, Socket} from 'net';
  */
 export class PgDriver {
 
-    private socket: Socket|undefined;
+    private socket: Socket | undefined;
 
     constructor() {
         // this.socket = undefined;
@@ -55,8 +55,3 @@ export class PgDriver {
         console.log('onClose');
     }
 }
-
-const a = new PgDriver();
-
-a.connect();
-

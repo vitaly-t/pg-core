@@ -1,5 +1,5 @@
 import {IQueryResult} from './result';
-import {IConnectionParams} from './params';
+import {IConnectionConfig} from './config';
 import {PgDriver} from './driver';
 
 export interface IPreparedStatement {
@@ -32,7 +32,7 @@ export class Connection {
         this.driver.connect();
     }
 
-    async connect(cn: IConnectionParams): Promise<void> {
+    async connect(cn: IConnectionConfig | string): Promise<void> {
 
     }
 

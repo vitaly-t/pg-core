@@ -1,4 +1,4 @@
-import {IConnectionParams} from './params';
+import {IConnectionConfig} from './config';
 import {IQueryResult} from './result';
 import {Connection, IPreparedStatement} from './connection';
 
@@ -23,7 +23,7 @@ export interface IPoolOptions {
  */
 export class Pool {
 
-    constructor(cn: IConnectionParams, options?: IPoolOptions) {
+    constructor(config: IConnectionConfig | string, options?: IPoolOptions) {
 
     }
 
