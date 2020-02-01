@@ -10,7 +10,7 @@ PostgreSQL Core Driver for NodeJS.
 
 ### Main Features
 
-* Zero dependencies
+* Minimum dependencies
 * Everything is in TypeScript
 * No extras (query formatting, etc.)
 * For Node.js >= v10.4.0, with native `BigInt` support
