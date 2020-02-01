@@ -1,11 +1,6 @@
-import {IConnectionParams} from "./params";
-
-type AcquireOptions = {
-    /**
-     * Acquire a detached connection, which won't be returned
-     */
-    detach: boolean
-};
+import {IConnectionParams} from './params';
+import {IQueryResult} from './result';
+import {Connection, IPreparedStatement} from './connection';
 
 /**
  * Pool Options.
@@ -15,6 +10,12 @@ export interface IPoolOptions {
      * Maximum number of connections.
      */
     max?: number;
+
+    /**
+     * Number of milliseconds a connection remains idle
+     * before it is closed and removed from the pool.
+     */
+    idleTimeout: number;
 }
 
 /**
@@ -22,22 +23,47 @@ export interface IPoolOptions {
  */
 export class Pool {
 
-    constructor(options?: IPoolOptions) {
+    constructor(cn: IConnectionParams, options?: IPoolOptions) {
 
     }
 
     /**
-     * Creates a direct physical/unmanageable connection.
+     * Acquires the next available connection from the pool.
      */
-    connect(cn: IConnectionParams) {
-
+    async connect(): Promise<Connection> {
+        return new Connection({});
     }
 
     /**
-     * Acquires next available connection from the pool.
+     * Safe query execution;
+     *
+     * 1. Acquires next available connection from the pool;
+     * 2. Executes the query;
+     * 3. Releases connection back to the pool.
      */
-    acquire(options: AcquireOptions) {
-
+    async query(sql: string, values?: any[]): Promise<IQueryResult[]> {
+        return this.execute<IQueryResult[]>(c => c.query(sql, values));
     }
 
+    /**
+     * Safe prepared statement execution;
+     */
+    async prepare(ps: IPreparedStatement): Promise<IQueryResult> {
+        return this.execute<IQueryResult>(c => c.prepare(ps));
+    }
+
+    /**
+     * Safe generic-method execution;
+     */
+    protected async execute<R>(cb: (c: Connection) => Promise<R>): Promise<R> {
+        const con = await this.connect();
+        try {
+            const result = await cb(con);
+            con.release();
+            return result;
+        } catch (e) {
+            con.release();
+            throw e;
+        }
+    }
 }

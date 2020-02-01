@@ -1,21 +1,54 @@
 import {IQueryResult} from './result';
+import {IConnectionParams} from './params';
+
+export interface IPreparedStatement {
+    name: string
+    sql: string
+    values: any[]
+}
 
 export interface IQueryOptions {
 
 }
 
-export class Connection {
+/**
+ * Client-side connection options.
+ */
+export interface IConnectionOptions {
+
     /**
-     * Executes Query.
+     * Number of milliseconds before timing out query with error.
      */
-    async query(query: string, values?: any[], options?: IQueryOptions): Promise<IQueryResult[]> {
-        return [];
+    queryTimeout?: number;
+}
+
+export class Connection {
+    constructor(options: IConnectionOptions) {
+
+    }
+
+    async connect(cn: IConnectionParams): Promise<void> {
+
     }
 
     /**
-     * Releases connection back to the pool.
+     * Executes Sql.
      */
-    release(options: any) {
+    async query(sql: string, values?: any[]): Promise<IQueryResult[]> {
+        return [];
+    }
+
+    async prepare(ps: IPreparedStatement): Promise<IQueryResult> {
+        return {command: '', fields: [], rows: []};
+    }
+
+    /**
+     * Releases the connection:
+     *
+     * - physically, if it was created directly.
+     * - back into the pool, if it came from one.
+     */
+    release() {
 
     }
 }
