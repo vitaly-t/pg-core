@@ -14,7 +14,7 @@ PostgreSQL Core Driver for NodeJS.
 * Everything is in TypeScript
 * No extras (query formatting, etc.)
 * For Node.js >= v10.4.0, with native `BigInt` support
-* Multi-server connections.
+* Multi-host connections (for PostgreSQL v10+).
 
 This low-level PostgreSQL kernel provides only connectivity and basic query execution
 that's supported by PostgreSQL server, but nothing else.

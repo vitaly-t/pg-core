@@ -8,14 +8,14 @@ export class Connection {
     /**
      * Executes Query.
      */
-    async query(query: string, values?: any[], options?: IQueryOptions): Promise<IQueryResult> {
-        return {};
+    async query(query: string, values?: any[], options?: IQueryOptions): Promise<IQueryResult[]> {
+        return [];
     }
 
     /**
      * Releases connection back to the pool.
      */
-    release() {
+    release(options: any) {
 
     }
 }
