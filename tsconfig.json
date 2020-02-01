@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "module": "commonjs",
+    "target": "es5",
+    "strict": true,
+    "noUnusedLocals": true
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}
