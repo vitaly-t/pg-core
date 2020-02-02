@@ -29,7 +29,7 @@ export class Connection {
 
     constructor(options?: IConnectionOptions) {
         this.driver = new PgDriver();
-        this.driver.connect();
+        this.driver.connect({});
     }
 
     async connect(cn: IConnectionConfig | string): Promise<void> {
