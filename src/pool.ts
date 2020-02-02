@@ -23,6 +23,8 @@ export interface IPoolOptions {
  */
 export class Pool {
 
+    private connections: Connection[] = [];
+
     constructor(config: IConnectionConfig | string, options?: IPoolOptions) {
 
     }

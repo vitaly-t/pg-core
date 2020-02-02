@@ -1,4 +1,5 @@
 import {connect, Socket} from 'net';
+import {IConnectionConfig} from "./config";
 
 /**
  * Encapsulates all low-level communications,
@@ -8,23 +9,35 @@ import {connect, Socket} from 'net';
  */
 export class PgDriver {
 
-    private socket: Socket | undefined;
+    private socket?: Socket;
 
     constructor() {
         // this.socket = undefined;
     }
 
-    connect() {
+    connect(cn: IConnectionConfig) {
         if (this.socket) {
             throw new Error('Already connected!');
         }
 
-        this.socket = connect(5432, 'localhost');
+        let s;
+        if (cn.hosts) {
+            const h = cn.hosts[0];
+            const n: string = h.name || '';
+            const p = h.port || 5432;
+            if (h.type === 'socket') {
+                s = connect(n);
+            } else {
+                s = connect(p, n);
+            }
 
-        this.socket.once('connect', this.onConnect.bind(this));
-        this.socket.once('error', this.onError.bind(this));
-        this.socket.once('close', this.onClose.bind(this));
-        this.socket.once('data', this.onData.bind(this));
+            s.once('connect', this.onConnect.bind(this));
+            s.once('error', this.onError.bind(this));
+            s.once('close', this.onClose.bind(this));
+            s.once('data', this.onData.bind(this));
+
+            this.socket = s;
+        }
     }
 
     disconnect() {
